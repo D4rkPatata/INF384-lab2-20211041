@@ -28,3 +28,17 @@ La métrica DORA que esperamos mover es la Lead Time para cambios ya que si redu
 
 1.5
 Especialmente mediremos cuanto se demora el workflow en ejecutar pasaremos de 1m y 3 segundos a menos de 1 min
+
+-----MEDICION POSTERIOR-----
+
+4.1 
+El proxy se mueve, el tiempo de demora aumenta unos segundos, esto se debe a que se implementó un correcto quality gate, asimismo como dependencias y cache para un correcto flujo y validaciones correctas.4.
+
+4.2
+Se declaro la version 1.3.0 esto debido a que en el historial de commits tenemos un cambio mayor que seria el de feat(tarifas): agregar desglose de la tarifa calculada. por ello pasa de 1.2.0 a 1.3.0 aun no se agrega cambios de patch ya que no se despliega la 1.3.0 cuando se despliegue y existan nuevos cambios menores, ahi si aumentara a 1.3.1, etc
+
+4.3
+El pipeline no verifica el formato del código o errores de estilo
+
+4.4
+Declaro que use IA para poder saber los comandos para usar el quality Gate y asimismo identificar si era realmente necesario cambiar el pyproject.tml. Asimismo usé IA para saber como poner el cache con dependencias.
