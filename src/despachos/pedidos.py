@@ -80,3 +80,33 @@ def agrupar_por_cliente(pedidos: list[Pedido]) -> dict[str, list[Pedido]]:
 
 def pedidos_abiertos(pedidos: list[Pedido]) -> list[Pedido]:
     return [p for p in pedidos if not p.esta_cerrado()]
+
+def resumen_por_cliente(pedidos: list[Pedido]) -> dict[str, dict[str, float | int]]:
+    resumen: dict[str, dict[str, float | int]] = {}
+
+    for pedido in pedidos:
+        if pedido.esta_cerrado():
+            continue
+
+        if pedido.cliente not in resumen:
+            resumen[pedido.cliente] = {
+                "pedidos": 0,
+                "unidades": 0,
+                "total": 0.0,
+            }
+
+        datos = resumen[pedido.cliente]
+        datos["pedidos"] = int(datos["pedidos"]) + 1
+        datos["unidades"] = int(datos["unidades"]) + pedido.unidades()
+
+        total_actual = float(datos["total"])
+        total_actual += pedido.total()
+
+        if total_actual > 1000:
+            total_actual = round(total_actual * 0.95, 2)
+        else:
+            total_actual = round(total_actual, 2)
+
+        datos["total"] = total_actual
+
+    return resumen
