@@ -36,6 +36,10 @@ jobs:
 
       - name: Analisis de calidad
         uses: SonarSource/sonarqube-scan-action@v8
+        with:
+          args: >
+            -Dsonar.organization=${{ vars.SONAR_ORG }}
+            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
